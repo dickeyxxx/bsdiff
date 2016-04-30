@@ -17,7 +17,7 @@ import (
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Fprintf(os.Stderr, "USAGE: bsdiff BINARY PATCH > BINARY\n")
+		fmt.Fprintf(os.Stderr, "USAGE: bsdiff BINARY PATCH > BINARY\n\n")
 		os.Exit(1)
 	}
 	old, err := os.Open(os.Args[1])
