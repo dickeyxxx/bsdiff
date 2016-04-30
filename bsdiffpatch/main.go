@@ -2,9 +2,9 @@ package main
 
 /*
 
-Creates bsdiff patch files.
+Patch a file with a bsdiff patch
 
-USAGE: bsdiff OLD NEW > patch
+USAGE: bsdiff BINARY PATCH > BINARY
 
 */
 
@@ -17,14 +17,14 @@ import (
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Fprintf(os.Stderr, "USAGE: bsdiff OLD NEW > PATCH\nVersion 1.1\n")
+		fmt.Fprintf(os.Stderr, "USAGE: bsdiff BINARY PATCH > BINARY\n")
 		os.Exit(1)
 	}
 	old, err := os.Open(os.Args[1])
 	must(err)
-	new, err := os.Open(os.Args[2])
+	patch, err := os.Open(os.Args[2])
 	must(err)
-	err = binarydist.Diff(old, new, os.Stdout)
+	err = binarydist.Patch(old, os.Stdout, patch)
 	must(err)
 }
 
